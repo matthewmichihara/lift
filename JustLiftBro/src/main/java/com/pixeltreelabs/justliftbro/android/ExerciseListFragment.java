@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.squareup.otto.Bus;
@@ -23,7 +24,7 @@ import butterknife.Views;
 public class ExerciseListFragment extends Fragment {
     @Inject Bus mBus;
 
-    @InjectView(R.id.lv_exercises) ListView mLvExercises;
+    @InjectView(R.id.gv_exercises) GridView mGvExercises;
 
     @Override public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -39,8 +40,8 @@ public class ExerciseListFragment extends Fragment {
         exercises.add(new Exercise("Squat"));
         exercises.add(new Exercise("Deadlift"));
 
-        mLvExercises.setAdapter(new ExerciseListAdapter(getActivity(), exercises));
-        mLvExercises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mGvExercises.setAdapter(new ExerciseListAdapter(getActivity(), exercises));
+        mGvExercises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Exercise exercise = (Exercise) parent.getItemAtPosition(position);
                 mBus.post(new ExerciseSelectedEvent(exercise));

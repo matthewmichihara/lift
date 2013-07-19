@@ -1,6 +1,9 @@
 package com.pixeltreelabs.justliftbro.android;
 
 import android.app.FragmentTransaction;
+import android.graphics.BitmapFactory;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -21,6 +24,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((JustLiftBroApplication) getApplication()).inject(this);
+
+        BitmapDrawable actionBarBackground = new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.bg_action_bar_tile));
+        actionBarBackground.setTileModeX(Shader.TileMode.REPEAT);
+        getActionBar().setBackgroundDrawable(actionBarBackground);
 
         ExerciseListFragment exerciseListFragment = new ExerciseListFragment();
         getFragmentManager().beginTransaction().add(R.id.fl_fragment_container, exerciseListFragment).commit();
