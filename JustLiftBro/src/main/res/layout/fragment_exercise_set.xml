@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Set:"/>
+
+        <LinearLayout
+                android:id="@+id/ll_new_set"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        <LinearLayout
+                android:id="@+id/btn_bar"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+            <Button
+                    android:id="@+id/btn_new_set"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Add new"/>
+
+            <Button
+                    android:id="@+id/btn_complete_set"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Complete Set"/>
+        </LinearLayout>
+
+
+        <EditText
+                android:id="@+id/et_new_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Comments"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Last Set:"/>
+
+        <LinearLayout
+                android:id="@+id/ll_last_set"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        <EditText
+                android:id="@+id/tv_last_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:id="@+id/btn_view_more_sessions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View more sessions"/>
+    </LinearLayout>
+</ScrollView>
