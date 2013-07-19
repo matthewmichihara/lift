@@ -7,6 +7,13 @@
 
     <style name="ActionBar" parent="android:style/Widget.Holo.ActionBar">
         <item name="android:background">@drawable/bg_action_bar</item>
+        <item name="android:displayOptions">showHome|showTitle</item>
+        <item name="android:titleTextStyle">@style/Theme.JustLiftBro.TitleTextStyle</item>
+        <item name="android:icon">@drawable/ic_glasses</item>
+    </style>
+
+    <style name="Theme.JustLiftBro.TitleTextStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text_exercise_list</item>
     </style>
 
 </resources>

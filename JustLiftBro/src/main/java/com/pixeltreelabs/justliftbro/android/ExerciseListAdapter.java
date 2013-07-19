@@ -35,8 +35,8 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
 
         Exercise exercise = getItem(position);
         holder.tvName.setText(exercise.getName());
-        holder.tvWeight.setText("20");
-        holder.tvReps.setText("10");
+        holder.tvWeight.setText("20lbs");
+        holder.tvReps.setText("10 REPS");
 
         return convertView;
     }

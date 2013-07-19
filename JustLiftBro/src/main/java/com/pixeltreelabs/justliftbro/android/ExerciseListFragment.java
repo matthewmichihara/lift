@@ -36,9 +36,9 @@ public class ExerciseListFragment extends Fragment {
         Views.inject(this, v);
 
         List<Exercise> exercises = new ArrayList<Exercise>();
-        exercises.add(new Exercise("Bench"));
-        exercises.add(new Exercise("Squat"));
-        exercises.add(new Exercise("Deadlift"));
+        exercises.add(new Exercise("BENCH"));
+        exercises.add(new Exercise("SQUAT"));
+        exercises.add(new Exercise("DEADLIFT"));
 
         mGvExercises.setAdapter(new ExerciseListAdapter(getActivity(), exercises));
         mGvExercises.setOnItemClickListener(new AdapterView.OnItemClickListener() {

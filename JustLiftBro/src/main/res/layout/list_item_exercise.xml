@@ -2,22 +2,34 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_width="120dp"
+              android:layout_margin="@dimen/btn_exercise_list_padding"
+              android:background="@drawable/btn_exercise"
+              android:layout_height="120dp"
+              android:gravity="center">
 
     <TextView
             android:id="@+id/tvName"
-            android:layout_width="match_parent"
+            android:textColor="@color/text_exercise_list"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     <TextView
             android:id="@+id/tvWeight"
-            android:layout_width="match_parent"
+            android:textColor="@color/text_exercise_list"
+            android:textSize="32dp"
+            android:fontFamily="sans-serif-thin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     <TextView
             android:id="@+id/tvReps"
-            android:layout_width="match_parent"
+            android:textColor="@color/text_exercise_list"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
 </LinearLayout>

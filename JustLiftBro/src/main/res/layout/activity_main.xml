@@ -1,6 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/fl_fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".MainActivity" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".MainActivity">
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bg_top_line_height"
+            android:background="@color/bg_top_line"/>
+
+    <FrameLayout
+            android:id="@+id/fl_fragment_container"
+            android:background="@color/bg_global"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+</LinearLayout>
