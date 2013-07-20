@@ -9,5 +9,7 @@
     <string name="view_more_sessions">View more sessions</string>
     <string name="complete_set">Complete Set</string>
     <string name="weight">Weight</string>
+    <string name="enter_exercise_name">Enter exercise name</string>
+    <string name="save">Save</string>
 
 </resources>

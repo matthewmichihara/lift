@@ -10,6 +10,7 @@ import com.pixeltreelabs.lift.android.ui.ExerciseListFragment;
 import com.pixeltreelabs.lift.android.ui.ExerciseSessionFragment;
 import com.pixeltreelabs.lift.android.ui.ExerciseSessionListFragment;
 import com.pixeltreelabs.lift.android.ui.MainActivity;
+import com.pixeltreelabs.lift.android.ui.NewExerciseDialogFragment;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -23,7 +24,8 @@ import timber.log.Timber;
                 MainActivity.class,
                 ExerciseListFragment.class,
                 ExerciseSessionFragment.class,
-                ExerciseSessionListFragment.class
+                ExerciseSessionListFragment.class,
+                NewExerciseDialogFragment.class
         }
 )
 public class LiftModule {

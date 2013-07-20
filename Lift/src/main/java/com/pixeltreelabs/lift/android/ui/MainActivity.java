@@ -1,6 +1,7 @@
 package com.pixeltreelabs.lift.android.ui;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
@@ -8,6 +9,8 @@ import com.pixeltreelabs.lift.android.LiftApplication;
 import com.pixeltreelabs.lift.android.R;
 import com.pixeltreelabs.lift.android.event.ExerciseSelectedEvent;
 import com.pixeltreelabs.lift.android.event.ExerciseSessionFinishedEvent;
+import com.pixeltreelabs.lift.android.event.NewExerciseClickedEvent;
+import com.pixeltreelabs.lift.android.event.NewExerciseSavedEvent;
 import com.pixeltreelabs.lift.android.event.ViewMoreSessionsClickedEvent;
 import com.pixeltreelabs.lift.android.model.Exercise;
 import com.squareup.otto.Bus;
@@ -85,5 +88,25 @@ public class MainActivity extends Activity {
         transaction.replace(R.id.fragment_container, exerciseSessionListFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Subscribe public void onNewExerciseClicked(NewExerciseClickedEvent e) {
+        timber.d("onNewExerciseClicked called");
+
+        // Remove any currently showing new exercise dialogs.
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("new_exercise_dialog");
+        if (prev != null) {
+            transaction.remove(prev);
+        }
+        transaction.addToBackStack(null);
+
+        // Create and show the new dialog.
+        NewExerciseDialogFragment newExerciseDialogFragment = new NewExerciseDialogFragment();
+        newExerciseDialogFragment.show(getFragmentManager(), "new_exercise_dialog");
+    }
+
+    @Subscribe public void onNewExerciseSaved(NewExerciseSavedEvent e) {
+        timber.d("onNewExerciseSaved called");
     }
 }
