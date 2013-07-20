@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android;
 
 import android.app.Application;
 import android.content.Context;
@@ -6,6 +6,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
+import com.pixeltreelabs.lift.android.ui.ExerciseListFragment;
+import com.pixeltreelabs.lift.android.ui.ExerciseSessionFragment;
+import com.pixeltreelabs.lift.android.ui.ExerciseSessionListFragment;
+import com.pixeltreelabs.lift.android.ui.MainActivity;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;

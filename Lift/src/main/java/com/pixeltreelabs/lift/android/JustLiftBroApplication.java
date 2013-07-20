@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android;
 
 import android.app.Application;
 

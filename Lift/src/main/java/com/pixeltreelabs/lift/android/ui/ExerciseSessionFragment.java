@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -13,6 +13,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.pixeltreelabs.lift.android.model.Exercise;
+import com.pixeltreelabs.lift.android.model.ExerciseSession;
+import com.pixeltreelabs.lift.android.model.ExerciseSessionDAO;
+import com.pixeltreelabs.lift.android.event.ExerciseSessionFinishedEvent;
+import com.pixeltreelabs.lift.android.model.ExerciseSet;
+import com.pixeltreelabs.lift.android.JustLiftBroApplication;
+import com.pixeltreelabs.lift.android.R;
+import com.pixeltreelabs.lift.android.event.ViewMoreSessionsClickedEvent;
 import com.squareup.otto.Bus;
 
 import java.util.ArrayList;

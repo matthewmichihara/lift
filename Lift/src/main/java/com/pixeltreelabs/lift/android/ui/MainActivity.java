@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android.ui;
 
 import android.app.FragmentTransaction;
 import android.graphics.BitmapFactory;
@@ -6,9 +6,14 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.Menu;
 
+import com.pixeltreelabs.lift.android.model.Exercise;
+import com.pixeltreelabs.lift.android.event.ExerciseSelectedEvent;
+import com.pixeltreelabs.lift.android.event.ExerciseSessionFinishedEvent;
+import com.pixeltreelabs.lift.android.JustLiftBroApplication;
+import com.pixeltreelabs.lift.android.R;
+import com.pixeltreelabs.lift.android.event.ViewMoreSessionsClickedEvent;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 

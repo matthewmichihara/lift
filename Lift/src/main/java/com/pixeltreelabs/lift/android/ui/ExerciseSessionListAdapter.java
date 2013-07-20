@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.pixeltreelabs.lift.android.model.ExerciseSession;
+import com.pixeltreelabs.lift.android.R;
 
 import java.util.List;
 

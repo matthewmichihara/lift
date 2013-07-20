@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android.model;
 
 import java.util.Date;
 import java.util.List;

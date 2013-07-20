@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android.model;
 
 /**
  * Created by mmichihara on 6/12/13.

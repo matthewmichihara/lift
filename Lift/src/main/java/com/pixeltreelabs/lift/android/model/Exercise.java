@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

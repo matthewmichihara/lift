@@ -1,4 +1,4 @@
-package com.pixeltreelabs.justliftbro.android;
+package com.pixeltreelabs.lift.android.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -9,6 +9,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.pixeltreelabs.lift.android.model.Exercise;
+import com.pixeltreelabs.lift.android.event.ExerciseSelectedEvent;
+import com.pixeltreelabs.lift.android.model.ExerciseSession;
+import com.pixeltreelabs.lift.android.model.ExerciseSessionDAO;
+import com.pixeltreelabs.lift.android.JustLiftBroApplication;
+import com.pixeltreelabs.lift.android.R;
 import com.squareup.otto.Bus;
 
 import java.util.List;
