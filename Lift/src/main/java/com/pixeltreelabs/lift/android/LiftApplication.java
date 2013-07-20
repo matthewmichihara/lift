@@ -4,16 +4,12 @@ import android.app.Application;
 
 import dagger.ObjectGraph;
 
-/**
- * Created by mmichihara on 6/19/13.
- */
-public class JustLiftBroApplication extends Application {
+public class LiftApplication extends Application {
     private ObjectGraph mObjectGraph;
 
-    @Override
-    public void onCreate() {
+    @Override public void onCreate() {
         super.onCreate();
-        mObjectGraph = ObjectGraph.create(new DefaultModule(this));
+        mObjectGraph = ObjectGraph.create(new LiftModule(this));
     }
 
     public void inject(Object object) {

@@ -5,16 +5,16 @@
               android:layout_height="match_parent">
 
     <EditText
-            android:id="@+id/et_weight"
+            android:id="@+id/weight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Weight"/>
+            android:hint="@string/weight"/>
 
     <EditText
-            android:id="@+id/et_reps"
+            android:id="@+id/reps"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Reps"/>
+            android:hint="reps"/>
 </LinearLayout>

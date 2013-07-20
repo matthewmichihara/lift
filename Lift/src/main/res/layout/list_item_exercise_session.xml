@@ -6,7 +6,7 @@
               android:layout_height="match_parent">
 
     <TextView
-            android:id="@+id/tv_exercise_session_date"
+            android:id="@+id/exercise_session_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" >Just Lift Bro
-    </string>
-    <string name="action_settings" >Settings
-    </string>
-    <string name="hello_world" >Hello world!
-    </string>
+    <string name="app_name">Just Lift Bro</string>
+    <string name="new_set">New Set:</string>
+    <string name="add_new">Add new</string>
+    <string name="comments">Comments</string>
+    <string name="last_set">Last Set:</string>
+    <string name="view_more_sessions">View more sessions</string>
+    <string name="complete_set">Complete Set</string>
+    <string name="weight">Weight</string>
 
 </resources>

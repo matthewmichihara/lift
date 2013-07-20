@@ -15,9 +15,6 @@ import java.util.List;
 import butterknife.InjectView;
 import butterknife.Views;
 
-/**
- * Created by mmichihara on 6/19/13.
- */
 public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
 
     public ExerciseListAdapter(Context context, List<Exercise> exercises) {
@@ -36,20 +33,20 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
         }
 
         Exercise exercise = getItem(position);
-        holder.tvName.setText(exercise.getName());
-        holder.tvWeight.setText("20lbs");
-        holder.tvReps.setText("10 REPS");
+        holder.name.setText(exercise.getName());
+        holder.weight.setText("20lbs");
+        holder.reps.setText("10 REPS");
 
         return convertView;
     }
 
     static class ViewHolder {
-        @InjectView(R.id.tvName) TextView tvName;
-        @InjectView(R.id.tvWeight) TextView tvWeight;
-        @InjectView(R.id.tvReps) TextView tvReps;
+        @InjectView(R.id.name) TextView name;
+        @InjectView(R.id.weight) TextView weight;
+        @InjectView(R.id.reps) TextView reps;
 
         public ViewHolder(View v) {
             Views.inject(ViewHolder.this, v);
         }
-     }
+    }
 }

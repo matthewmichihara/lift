@@ -3,35 +3,32 @@ package com.pixeltreelabs.lift.android.model;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by mmichihara on 6/12/13.
- */
 public class ExerciseSession {
-    private final Exercise mExercise;
-    private final List<ExerciseSet> mExerciseSets;
-    private final Date mDate;
-    private final String mNotes;
+    private final Exercise exercise;
+    private final List<ExerciseSet> exerciseSets;
+    private final Date date;
+    private final String notes;
 
     public ExerciseSession(Exercise exercise, List<ExerciseSet> exerciseSets, String notes, Date date) {
-        mExercise = exercise;
-        mExerciseSets = exerciseSets;
-        mNotes = notes;
-        mDate = date;
+        this.exercise = exercise;
+        this.exerciseSets = exerciseSets;
+        this.notes = notes;
+        this.date = date;
     }
 
     public Exercise getExercise() {
-        return mExercise;
+        return exercise;
     }
 
     public List<ExerciseSet> getExerciseSets() {
-        return mExerciseSets;
+        return exerciseSets;
     }
 
     public String getNotes() {
-        return mNotes;
+        return notes;
     }
 
     public Date getDate() {
-        return mDate;
+        return date;
     }
 }

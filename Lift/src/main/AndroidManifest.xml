@@ -12,8 +12,8 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:name="com.pixeltreelabs.lift.android.JustLiftBroApplication"
-        android:theme="@style/Theme.JustLiftBro" >
+        android:name=".LiftApplication"
+        android:theme="@style/Theme.Lift" >
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name" >

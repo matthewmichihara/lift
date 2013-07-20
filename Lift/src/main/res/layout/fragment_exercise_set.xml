@@ -12,10 +12,10 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New Set:"/>
+                android:text="@string/new_set"/>
 
         <LinearLayout
-                android:id="@+id/ll_new_set"
+                android:id="@+id/new_set_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"/>
@@ -27,47 +27,47 @@
                 android:layout_width="match_parent">
 
             <Button
-                    android:id="@+id/btn_new_set"
+                    android:id="@+id/new_set"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Add new"/>
+                    android:text="@string/add_new"/>
 
             <Button
-                    android:id="@+id/btn_complete_set"
+                    android:id="@+id/complete_session"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Complete Set"/>
+                    android:text="@string/complete_set"/>
         </LinearLayout>
 
 
         <EditText
-                android:id="@+id/et_new_notes"
+                android:id="@+id/new_notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Comments"/>
+                android:hint="@string/comments"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Last Set:"/>
+                android:text="@string/last_set"/>
 
         <LinearLayout
-                android:id="@+id/ll_last_set"
+                android:id="@+id/last_set_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"/>
 
         <EditText
-                android:id="@+id/tv_last_notes"
+                android:id="@+id/last_notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         <Button
-                android:id="@+id/btn_view_more_sessions"
+                android:id="@+id/more_sessions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="View more sessions"/>
+                android:text="@string/view_more_sessions"/>
     </LinearLayout>
 </ScrollView>

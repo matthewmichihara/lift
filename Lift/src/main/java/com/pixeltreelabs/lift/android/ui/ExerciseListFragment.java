@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.pixeltreelabs.lift.android.LiftApplication;
 import com.pixeltreelabs.lift.android.model.Exercise;
 import com.pixeltreelabs.lift.android.event.ExerciseSelectedEvent;
-import com.pixeltreelabs.lift.android.JustLiftBroApplication;
 import com.pixeltreelabs.lift.android.R;
 import com.squareup.otto.Bus;
 
@@ -24,13 +24,13 @@ import butterknife.InjectView;
 import butterknife.Views;
 
 public class ExerciseListFragment extends Fragment {
-    @Inject Bus mBus;
+    @Inject Bus bus;
 
-    @InjectView(R.id.gv_exercises) GridView mGvExercises;
+    @InjectView(R.id.exercise_grid) GridView exerciseGrid;
 
     @Override public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((JustLiftBroApplication) activity.getApplication()).inject(this);
+        ((LiftApplication) activity.getApplication()).inject(this);
     }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,11 +42,11 @@ public class ExerciseListFragment extends Fragment {
         exercises.add(new Exercise("SQUAT"));
         exercises.add(new Exercise("DEADLIFT"));
 
-        mGvExercises.setAdapter(new ExerciseListAdapter(getActivity(), exercises));
-        mGvExercises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        exerciseGrid.setAdapter(new ExerciseListAdapter(getActivity(), exercises));
+        exerciseGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Exercise exercise = (Exercise) parent.getItemAtPosition(position);
-                mBus.post(new ExerciseSelectedEvent(exercise));
+                bus.post(new ExerciseSelectedEvent(exercise));
             }
         });
 
@@ -55,11 +55,11 @@ public class ExerciseListFragment extends Fragment {
 
     @Override public void onStart() {
         super.onStart();
-        mBus.register(this);
+        bus.register(this);
     }
 
     @Override public void onStop() {
         super.onStop();
-        mBus.unregister(this);
+        bus.unregister(this);
     }
 }

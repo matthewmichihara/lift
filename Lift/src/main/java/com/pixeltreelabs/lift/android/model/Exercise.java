@@ -3,22 +3,19 @@ package com.pixeltreelabs.lift.android.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by mmichihara on 6/12/13.
- */
 public class Exercise implements Parcelable {
-    private final String mName;
+    private final String name;
 
     public Exercise(String name) {
-        mName = name;
+        this.name = name;
     }
 
     private Exercise(Parcel in) {
-        mName = in.readString();
+        name = in.readString();
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     @Override public boolean equals(Object other) {
@@ -30,12 +27,12 @@ public class Exercise implements Parcelable {
             return false;
 
         Exercise exercise = (Exercise) other;
-        return mName.equals(exercise.getName());
+        return name.equals(exercise.getName());
     }
 
     @Override public int hashCode() {
         int hash = 1;
-        hash = hash * 31 + mName.hashCode();
+        hash = hash * 31 + name.hashCode();
         return hash;
     }
 
@@ -44,7 +41,7 @@ public class Exercise implements Parcelable {
     }
 
     @Override public void writeToParcel(Parcel out, int flags) {
-        out.writeString(mName);
+        out.writeString(name);
     }
 
     public static final Parcelable.Creator<Exercise> CREATOR

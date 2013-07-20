@@ -1,27 +1,23 @@
 package com.pixeltreelabs.lift.android.model;
 
-/**
- * Created by mmichihara on 6/12/13.
- */
 public class ExerciseSet {
-    private final int mNumReps;
-    private final int mWeight;
+    private final int numReps;
+    private final int weight;
 
     public ExerciseSet(int numReps, int weight) {
-        mNumReps = numReps;
-        mWeight = weight;
+        this.numReps = numReps;
+        this.weight = weight;
     }
 
     public int getNumReps() {
-        return mNumReps;
+        return numReps;
     }
 
     public int getWeight() {
-        return mWeight;
+        return weight;
     }
 
-    @Override
-    public String toString() {
-        return "Exercise Set = {reps=" + mNumReps + " weight=" + mWeight + "}";
+    @Override public String toString() {
+        return "Exercise Set = {reps=" + numReps + " weight=" + weight + "}";
     }
 }

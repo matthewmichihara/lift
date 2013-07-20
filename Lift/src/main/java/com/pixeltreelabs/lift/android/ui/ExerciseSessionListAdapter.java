@@ -15,9 +15,6 @@ import java.util.List;
 import butterknife.InjectView;
 import butterknife.Views;
 
-/**
- * Created by mmichihara on 7/18/13.
- */
 public class ExerciseSessionListAdapter extends ArrayAdapter<ExerciseSession> {
     public ExerciseSessionListAdapter(Context context, List<ExerciseSession> exerciseSessions) {
         super(context, R.layout.list_item_exercise_session, exerciseSessions);
@@ -41,7 +38,7 @@ public class ExerciseSessionListAdapter extends ArrayAdapter<ExerciseSession> {
     }
 
     static class ViewHolder {
-        @InjectView(R.id.tv_exercise_session_date) TextView tvDate;
+        @InjectView(R.id.exercise_session_date) TextView tvDate;
 
         public ViewHolder(View v) {
             Views.inject(ViewHolder.this, v);

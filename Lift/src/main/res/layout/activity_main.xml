@@ -11,7 +11,7 @@
             android:background="@color/bg_top_line"/>
 
     <FrameLayout
-            android:id="@+id/fl_fragment_container"
+            android:id="@+id/fragment_container"
             android:background="@color/bg_global"
             android:layout_width="match_parent"
             android:layout_height="0dp"
