@@ -39,6 +39,8 @@ public class NewExerciseDialogFragment extends DialogFragment {
         View v = inflater.inflate(R.layout.fragment_new_exercise, container, false);
         Views.inject(this, v);
 
+        getDialog().setTitle(R.string.exercise_name);
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 String name = exerciseName.getText().toString();
@@ -47,6 +49,7 @@ public class NewExerciseDialogFragment extends DialogFragment {
 
                 Exercise exercise = new Exercise(name.toUpperCase());
                 exerciseStore.save(exercise);
+                dismiss();
                 bus.post(new NewExerciseSavedEvent(exercise));
             }
         });

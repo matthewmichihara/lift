@@ -11,5 +11,6 @@
     <string name="weight">Weight</string>
     <string name="enter_exercise_name">Enter exercise name</string>
     <string name="save">Save</string>
+    <string name="exercise_name">New Exercise</string>
 
 </resources>

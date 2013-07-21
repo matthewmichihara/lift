@@ -7,8 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.pixeltreelabs.lift.android.model.Exercise;
 import com.pixeltreelabs.lift.android.R;
+import com.pixeltreelabs.lift.android.model.Exercise;
+import com.pixeltreelabs.lift.android.model.ExerciseSession;
+import com.pixeltreelabs.lift.android.model.ExerciseSessionStore;
+import com.pixeltreelabs.lift.android.model.ExerciseSet;
 
 import java.util.List;
 
@@ -16,9 +19,11 @@ import butterknife.InjectView;
 import butterknife.Views;
 
 public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
+    private final ExerciseSessionStore exerciseSessionStore;
 
-    public ExerciseListAdapter(Context context, List<Exercise> exercises) {
+    public ExerciseListAdapter(Context context, List<Exercise> exercises, ExerciseSessionStore exerciseSessionStore) {
         super(context, R.layout.list_item_exercise, exercises);
+        this.exerciseSessionStore = exerciseSessionStore;
     }
 
     @Override public View getView(int position, View convertView, ViewGroup parent) {
@@ -34,8 +39,28 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
 
         Exercise exercise = getItem(position);
         holder.name.setText(exercise.getName());
-        holder.weight.setText("20lbs");
-        holder.reps.setText("10 REPS");
+
+        List<ExerciseSession> exerciseSessions = exerciseSessionStore.get(exercise);
+        if (!exerciseSessions.isEmpty()) {
+            ExerciseSession lastSession = exerciseSessions.get(0);
+            List<ExerciseSet> sets = lastSession.getExerciseSets();
+            int highestWeight = 0;
+            int associatedReps = 0;
+            for (ExerciseSet exerciseSet : sets) {
+                int weight = exerciseSet.getWeight();
+                int reps = exerciseSet.getNumReps();
+                if (weight > highestWeight || (weight == highestWeight && reps > associatedReps)) {
+                    highestWeight = weight;
+                    associatedReps = reps;
+                }
+            }
+
+            holder.weight.setText(highestWeight + "lbs");
+            holder.reps.setText(associatedReps + " REPS");
+        } else {
+            holder.weight.setText("-");
+            holder.reps.setText("-");
+        }
 
         return convertView;
     }
