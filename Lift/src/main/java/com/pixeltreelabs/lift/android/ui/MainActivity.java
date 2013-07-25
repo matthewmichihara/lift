@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.pixeltreelabs.lift.android.LiftApplication;
 import com.pixeltreelabs.lift.android.R;
@@ -44,13 +45,19 @@ public class MainActivity extends Activity {
         bus.unregister(this);
     }
 
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getFragmentManager().popBackStack();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     @Subscribe public void onExerciseSelected(ExerciseSelectedEvent event) {
         timber.d("onExerciseSelected called");
         Exercise exercise = event.getExercise();
-
-        // Update the action bar.
-        getActionBar().setTitle(exercise.getName());
-        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Construct the bundle to send to the fragment.
         Bundle args = new Bundle();
@@ -67,16 +74,13 @@ public class MainActivity extends Activity {
 
     @Subscribe public void onExerciseSessionFinished(ExerciseSessionFinishedEvent e) {
         timber.d("onExerciseSessionFinished called");
-        getActionBar().setTitle(R.string.app_name);
-        getActionBar().setDisplayHomeAsUpEnabled(false);
+
         getFragmentManager().popBackStack();
     }
 
     @Subscribe public void onViewMoreSessionsClicked(ViewMoreSessionsClickedEvent e) {
         timber.d("onViewMoreSessionsClicked called");
         Exercise exercise = e.getExercise();
-        getActionBar().setTitle(exercise.getName() + " Sessions");
-        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Construct the bundle to send to the fragment.
         Bundle args = new Bundle();
@@ -112,9 +116,6 @@ public class MainActivity extends Activity {
 
         ExerciseSession session = e.getExerciseSession();
         Exercise exercise = session.getExercise();
-
-        getActionBar().setTitle(session.getExercise().getName());
-        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Construct the bundle to send to the fragment.
         Bundle args = new Bundle();

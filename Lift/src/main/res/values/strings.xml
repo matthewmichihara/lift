@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Just Lift Bro</string>
+    <string name="app_name">Gym Flow</string>
     <string name="new_set">NEW SET</string>
     <string name="add_new">ADD NEW</string>
     <string name="comments">Comments</string>
@@ -17,5 +17,6 @@
     <string name="reps">Reps:</string>
     <string name="weight_x">Weight: %1$dlbs</string>
     <string name="reps_x">Reps: %1$d</string>
+    <string name="x_sessions">%1$s Sessions</string>
 
 </resources>

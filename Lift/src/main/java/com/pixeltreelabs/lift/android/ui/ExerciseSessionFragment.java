@@ -168,6 +168,10 @@ public class ExerciseSessionFragment extends Fragment {
     public void onStart() {
         super.onStart();
         bus.register(this);
+
+        // Update the action bar.
+        getActivity().getActionBar().setTitle(exercise.getName());
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

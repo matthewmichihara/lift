@@ -10,12 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.pixeltreelabs.lift.android.LiftApplication;
+import com.pixeltreelabs.lift.android.R;
 import com.pixeltreelabs.lift.android.event.ExerciseSessionSelectedEvent;
 import com.pixeltreelabs.lift.android.model.Exercise;
-import com.pixeltreelabs.lift.android.event.ExerciseSelectedEvent;
 import com.pixeltreelabs.lift.android.model.ExerciseSession;
 import com.pixeltreelabs.lift.android.model.ExerciseSessionStore;
-import com.pixeltreelabs.lift.android.R;
 import com.squareup.otto.Bus;
 
 import java.util.List;
@@ -62,6 +61,9 @@ public class ExerciseSessionListFragment extends Fragment {
     @Override public void onStart() {
         super.onStart();
         bus.register(this);
+
+        getActivity().getActionBar().setTitle(getString(R.string.x_sessions, exercise.getName()));
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override public void onStop() {

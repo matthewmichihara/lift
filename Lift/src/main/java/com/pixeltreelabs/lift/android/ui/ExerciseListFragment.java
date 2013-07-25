@@ -72,6 +72,9 @@ public class ExerciseListFragment extends Fragment {
     @Override public void onStart() {
         super.onStart();
         bus.register(this);
+
+        getActivity().getActionBar().setTitle(R.string.app_name);
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
     @Override public void onStop() {
