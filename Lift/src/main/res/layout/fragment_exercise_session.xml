@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="false">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:background="@color/bg_grey"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawablePadding="@dimen/btn_drawable_padding"
+                android:text="@string/new_set"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:id="@+id/new_set_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_vertical_spacing"
+                    android:orientation="vertical"/>
+
+            <Button
+                    android:id="@+id/new_set"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_vertical_spacing"
+                    android:textColor="@color/text"
+                    android:background="@drawable/btn_grey_normal"
+                    android:text="@string/add_new"/>
+
+            <Button
+                    android:id="@+id/complete_session"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_vertical_spacing"
+                    android:textColor="@color/text"
+                    android:background="@drawable/btn_red"
+                    android:text="@string/complete_set"/>
+
+            <EditText
+                    android:id="@+id/new_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_vertical_spacing"
+                    android:drawableLeft="@drawable/ic_notes"
+                    android:lines="3"
+                    android:padding="4dp"
+                    android:drawablePadding="@dimen/btn_drawable_padding"
+                    android:background="@android:color/white"
+                    android:hint="@string/comments"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:drawableLeft="@drawable/ic_last_set"
+                    android:drawablePadding="@dimen/btn_drawable_padding"
+                    android:background="@color/bg_grey"
+                    android:text="@string/last_set"/>
+
+            <LinearLayout
+                    android:id="@+id/last_set_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical"/>
+
+            <TextView
+                    android:id="@+id/last_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="center">
+
+                <TextView
+                        android:id="@+id/more_sessions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_red_calendar"
+                        android:drawablePadding="@dimen/btn_drawable_padding"
+                        android:textColor="@color/red"
+                        android:text="@string/view_more_sessions"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

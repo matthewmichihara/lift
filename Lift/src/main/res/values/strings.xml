@@ -2,15 +2,20 @@
 <resources>
 
     <string name="app_name">Just Lift Bro</string>
-    <string name="new_set">New Set:</string>
-    <string name="add_new">Add new</string>
+    <string name="new_set">NEW SET</string>
+    <string name="add_new">ADD NEW</string>
     <string name="comments">Comments</string>
-    <string name="last_set">Last Set:</string>
-    <string name="view_more_sessions">View more sessions</string>
-    <string name="complete_set">Complete Set</string>
-    <string name="weight">Weight</string>
+    <string name="last_set">YOUR LAST SET</string>
+    <string name="view_more_sessions">VIEW MORE SESSIONS</string>
+    <string name="complete_set">COMPLETE SET</string>
+    <string name="weight">Weight:</string>
     <string name="enter_exercise_name">Enter exercise name</string>
     <string name="save">Save</string>
     <string name="exercise_name">New Exercise</string>
+    <string name="x_pounds">%1$dlbs</string>
+    <string name="x_reps">%1$d REPS</string>
+    <string name="reps">Reps:</string>
+    <string name="weight_x">Weight: %1$dlbs</string>
+    <string name="reps_x">Reps: %1$d</string>
 
 </resources>

@@ -13,7 +13,7 @@
     </style>
 
     <style name="Theme.Lift.TitleTextStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/text_exercise_list</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 
 </resources>

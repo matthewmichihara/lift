@@ -50,7 +50,7 @@ public class ExerciseSessionFragment extends Fragment {
     @InjectView(R.id.new_notes) EditText newNotes;
     @InjectView(R.id.last_set_list) LinearLayout lastSetList;
     @InjectView(R.id.last_notes) TextView lastNotes;
-    @InjectView(R.id.more_sessions) Button moreSessions;
+    @InjectView(R.id.more_sessions) TextView moreSessions;
 
     @Override public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -58,19 +58,19 @@ public class ExerciseSessionFragment extends Fragment {
     }
 
     @Override public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_exercise_set, container, false);
+        final View view = inflater.inflate(R.layout.fragment_exercise_session, container, false);
         Views.inject(this, view);
 
         exercise = getArguments().getParcelable(ARG_EXERCISE);
         if (exercise == null) throw new RuntimeException();
 
         // Add the initial row.
-        View exerciseSetRow = inflater.inflate(R.layout.set_item, container, false);
+        View exerciseSetRow = inflater.inflate(R.layout.new_set_item, container, false);
         newSetList.addView(exerciseSetRow);
 
         newSet.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                View exerciseSetRow = inflater.inflate(R.layout.set_item, container, false);
+                View exerciseSetRow = inflater.inflate(R.layout.new_set_item, container, false);
                 newSetList.addView(exerciseSetRow);
             }
         });
@@ -83,8 +83,8 @@ public class ExerciseSessionFragment extends Fragment {
                 int childCount = newSetList.getChildCount();
                 for (int i = 0; i < childCount; i++) {
                     LinearLayout setLinearLayout = (LinearLayout) newSetList.getChildAt(i);
-                    EditText weightEditText = (EditText) setLinearLayout.getChildAt(0);
-                    EditText repsEditText = (EditText) setLinearLayout.getChildAt(1);
+                    EditText weightEditText = (EditText) setLinearLayout.findViewById(R.id.weight);
+                    EditText repsEditText = (EditText) setLinearLayout.findViewById(R.id.reps);
 
                     String weightString = weightEditText.getText().toString();
                     String repsString = repsEditText.getText().toString();
@@ -94,9 +94,9 @@ public class ExerciseSessionFragment extends Fragment {
                     }
 
                     int weight = Integer.parseInt(weightEditText.getText().toString());
-                    int height = Integer.parseInt(repsEditText.getText().toString());
+                    int reps = Integer.parseInt(repsEditText.getText().toString());
 
-                    ExerciseSet set = new ExerciseSet(weight, height);
+                    ExerciseSet set = new ExerciseSet(weight, reps);
                     timber.d("New exercise set created: %s", set);
                     sets.add(set);
                 }
@@ -126,15 +126,21 @@ public class ExerciseSessionFragment extends Fragment {
             ExerciseSession lastSession = sessions.get(0);
             List<ExerciseSet> sets = lastSession.getExerciseSets();
             for (ExerciseSet set : sets) {
-                View setRow = inflater.inflate(R.layout.set_item, container, false);
+                View setRow = inflater.inflate(R.layout.last_set_item, container, false);
 
-                EditText weightEditText = (EditText) setRow.findViewById(R.id.weight);
-                EditText repsEditText = (EditText) setRow.findViewById(R.id.reps);
+                TextView weightEditText = (TextView) setRow.findViewById(R.id.weight);
+                TextView repsEditText = (TextView) setRow.findViewById(R.id.reps);
 
-                weightEditText.setText(String.valueOf(set.getWeight()));
-                repsEditText.setText(String.valueOf(set.getNumReps()));
+                weightEditText.setText(getString(R.string.weight_x, set.getWeight()));
+                repsEditText.setText(getString(R.string.reps_x, set.getNumReps()));
 
                 lastSetList.addView(setRow);
+
+                // Add divider
+                View divider = inflater.inflate(R.layout.divider, container, false);
+                if (set != sets.get(sets.size() - 1)) {
+                    lastSetList.addView(divider);
+                }
             }
 
             String notes = lastSession.getNotes();

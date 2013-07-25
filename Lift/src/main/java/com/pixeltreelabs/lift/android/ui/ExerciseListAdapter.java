@@ -40,26 +40,32 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
         Exercise exercise = getItem(position);
         holder.name.setText(exercise.getName());
 
-        List<ExerciseSession> exerciseSessions = exerciseSessionStore.get(exercise);
-        if (!exerciseSessions.isEmpty()) {
-            ExerciseSession lastSession = exerciseSessions.get(0);
-            List<ExerciseSet> sets = lastSession.getExerciseSets();
-            int highestWeight = 0;
-            int associatedReps = 0;
-            for (ExerciseSet exerciseSet : sets) {
-                int weight = exerciseSet.getWeight();
-                int reps = exerciseSet.getNumReps();
-                if (weight > highestWeight || (weight == highestWeight && reps > associatedReps)) {
-                    highestWeight = weight;
-                    associatedReps = reps;
-                }
-            }
-
-            holder.weight.setText(highestWeight + "lbs");
-            holder.reps.setText(associatedReps + " REPS");
-        } else {
+        if (position == getCount() - 1) {
+            holder.name.setText("New Exercise");
             holder.weight.setText("-");
             holder.reps.setText("-");
+        } else {
+            List<ExerciseSession> exerciseSessions = exerciseSessionStore.get(exercise);
+            if (!exerciseSessions.isEmpty()) {
+                ExerciseSession lastSession = exerciseSessions.get(0);
+                List<ExerciseSet> sets = lastSession.getExerciseSets();
+                int highestWeight = 0;
+                int associatedReps = 0;
+                for (ExerciseSet exerciseSet : sets) {
+                    int weight = exerciseSet.getWeight();
+                    int reps = exerciseSet.getNumReps();
+                    if (weight > highestWeight || (weight == highestWeight && reps > associatedReps)) {
+                        highestWeight = weight;
+                        associatedReps = reps;
+                    }
+                }
+
+                holder.weight.setText(getContext().getString(R.string.x_pounds, highestWeight));
+                holder.reps.setText(getContext().getString(R.string.x_reps, associatedReps));
+            } else {
+                holder.weight.setText("-");
+                holder.reps.setText("-");
+            }
         }
 
         return convertView;

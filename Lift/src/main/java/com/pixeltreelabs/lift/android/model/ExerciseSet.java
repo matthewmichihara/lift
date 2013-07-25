@@ -4,9 +4,9 @@ public class ExerciseSet {
     private final int numReps;
     private final int weight;
 
-    public ExerciseSet(int numReps, int weight) {
-        this.numReps = numReps;
+    public ExerciseSet(int weight, int numReps) {
         this.weight = weight;
+        this.numReps = numReps;
     }
 
     public int getNumReps() {
