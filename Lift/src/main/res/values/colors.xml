@@ -5,4 +5,5 @@
     <color name="bg_grey">#91969c</color>
     <color name="text">#eef0e3</color>
     <color name="red">#bf5d59</color>
+    <color name="bg_history">#414850</color>
 </resources>

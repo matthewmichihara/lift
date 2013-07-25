@@ -118,11 +118,12 @@ public class ExerciseSessionFragment extends Fragment {
 
                 String notes = newNotes.getText().toString();
 
-                ExerciseSession session = new ExerciseSession(exercise, sets, notes, new Date());
+                if (!sets.isEmpty()) {
+                    ExerciseSession session = new ExerciseSession(exercise, sets, notes, new Date());
 
-                timber.d("Saving exercise session: %s", session);
-                exerciseSessionStore.save(session);
-
+                    timber.d("Saving exercise session: %s", session);
+                    exerciseSessionStore.save(session);
+                }
                 bus.post(new ExerciseSessionFinishedEvent());
             }
         });

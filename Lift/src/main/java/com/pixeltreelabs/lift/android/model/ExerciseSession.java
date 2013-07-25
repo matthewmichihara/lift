@@ -48,6 +48,17 @@ public class ExerciseSession implements Parcelable {
         return new Date(date);
     }
 
+    public int getHeaviestSetWeight() {
+        int heaviestWeight = 0;
+        for (ExerciseSet set : exerciseSets) {
+            if (set.getWeight() > heaviestWeight) {
+                heaviestWeight = set.getWeight();
+            }
+        }
+
+        return heaviestWeight;
+    }
+
     @Override public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(exercise)

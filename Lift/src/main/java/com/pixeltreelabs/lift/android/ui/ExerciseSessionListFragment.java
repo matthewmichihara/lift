@@ -62,7 +62,7 @@ public class ExerciseSessionListFragment extends Fragment {
         super.onStart();
         bus.register(this);
 
-        getActivity().getActionBar().setTitle(getString(R.string.x_sessions, exercise.getName()));
+        getActivity().getActionBar().setTitle(getString(R.string.x_history, exercise.getName()));
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

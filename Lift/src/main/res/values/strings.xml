@@ -17,6 +17,8 @@
     <string name="reps">Reps:</string>
     <string name="weight_x">Weight: %1$dlbs</string>
     <string name="reps_x">Reps: %1$d</string>
-    <string name="x_sessions">%1$s Sessions</string>
+    <string name="x_history">%1$s History</string>
+    <string name="new_exercise">NEW EXERCISE</string>
+    <string name="date_weight">&lt;b>%1$s&lt;/b> - %2$dlbs</string>
 
 </resources>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_margin="@dimen/btn_exercise_list_padding"
-              android:background="@drawable/btn_grey"
-              android:layout_height="match_parent"
-              android:gravity="center">
+<com.pixeltreelabs.lift.android.ui.SquaredLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                       android:orientation="vertical"
+                                                       android:layout_width="match_parent"
+                                                       android:layout_margin="@dimen/btn_exercise_list_padding"
+                                                       android:background="@drawable/btn_grey"
+                                                       android:layout_height="match_parent"
+                                                       android:gravity="center">
 
     <TextView
             android:id="@+id/name"
@@ -32,4 +32,4 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</com.pixeltreelabs.lift.android.ui.SquaredLinearLayout>
