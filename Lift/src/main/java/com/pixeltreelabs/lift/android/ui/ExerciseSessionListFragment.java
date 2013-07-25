@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.pixeltreelabs.lift.android.LiftApplication;
+import com.pixeltreelabs.lift.android.event.ExerciseSessionSelectedEvent;
 import com.pixeltreelabs.lift.android.model.Exercise;
 import com.pixeltreelabs.lift.android.event.ExerciseSelectedEvent;
 import com.pixeltreelabs.lift.android.model.ExerciseSession;
@@ -51,7 +52,7 @@ public class ExerciseSessionListFragment extends Fragment {
         exerciseSessionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ExerciseSession exerciseSession = (ExerciseSession) parent.getItemAtPosition(position);
-                bus.post(new ExerciseSelectedEvent(exerciseSession.getExercise()));
+                bus.post(new ExerciseSessionSelectedEvent(exerciseSession));
             }
         });
 

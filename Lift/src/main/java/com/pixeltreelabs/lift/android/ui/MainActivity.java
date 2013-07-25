@@ -9,9 +9,11 @@ import com.pixeltreelabs.lift.android.LiftApplication;
 import com.pixeltreelabs.lift.android.R;
 import com.pixeltreelabs.lift.android.event.ExerciseSelectedEvent;
 import com.pixeltreelabs.lift.android.event.ExerciseSessionFinishedEvent;
+import com.pixeltreelabs.lift.android.event.ExerciseSessionSelectedEvent;
 import com.pixeltreelabs.lift.android.event.NewExerciseClickedEvent;
 import com.pixeltreelabs.lift.android.event.ViewMoreSessionsClickedEvent;
 import com.pixeltreelabs.lift.android.model.Exercise;
+import com.pixeltreelabs.lift.android.model.ExerciseSession;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -103,5 +105,28 @@ public class MainActivity extends Activity {
         // Create and show the new dialog.
         NewExerciseDialogFragment newExerciseDialogFragment = new NewExerciseDialogFragment();
         newExerciseDialogFragment.show(getFragmentManager(), "new_exercise_dialog");
+    }
+
+    @Subscribe public void onExerciseSessionSelected(ExerciseSessionSelectedEvent e) {
+        timber.d("onExerciseSessionSelected called");
+
+        ExerciseSession session = e.getExerciseSession();
+        Exercise exercise = session.getExercise();
+
+        getActionBar().setTitle(session.getExercise().getName());
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Construct the bundle to send to the fragment.
+        Bundle args = new Bundle();
+        args.putParcelable(ExerciseSessionFragment.ARG_EXERCISE, exercise);
+        args.putParcelable(ExerciseSessionFragment.ARG_EXERCISE_SESSION, session);
+
+        ExerciseSessionFragment sessionFragment = new ExerciseSessionFragment();
+        sessionFragment.setArguments(args);
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, sessionFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

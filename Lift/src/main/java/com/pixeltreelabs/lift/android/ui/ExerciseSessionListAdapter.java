@@ -1,14 +1,15 @@
 package com.pixeltreelabs.lift.android.ui;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.pixeltreelabs.lift.android.model.ExerciseSession;
 import com.pixeltreelabs.lift.android.R;
+import com.pixeltreelabs.lift.android.model.ExerciseSession;
 
 import java.util.List;
 
@@ -32,7 +33,8 @@ public class ExerciseSessionListAdapter extends ArrayAdapter<ExerciseSession> {
         }
 
         ExerciseSession exerciseSession = getItem(position);
-        holder.tvDate.setText(exerciseSession.getDate().toString());
+
+        holder.tvDate.setText(DateUtils.getRelativeTimeSpanString(getContext(), exerciseSession.getDate().getTime()));
 
         return convertView;
     }

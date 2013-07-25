@@ -3,6 +3,9 @@ package com.pixeltreelabs.lift.android.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 public class Exercise implements Parcelable {
     private final String name;
 
@@ -18,22 +21,26 @@ public class Exercise implements Parcelable {
         return name;
     }
 
-    @Override public boolean equals(Object other) {
-        if (other == null)
+    @Override public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
-        if (other == this)
+        }
+        if (obj == this) {
             return true;
-        if (!(other instanceof Exercise))
+        }
+        if (obj.getClass() != getClass()) {
             return false;
-
-        Exercise exercise = (Exercise) other;
-        return name.equals(exercise.getName());
+        }
+        Exercise other = (Exercise) obj;
+        return new EqualsBuilder()
+                .append(name, other.name)
+                .isEquals();
     }
 
     @Override public int hashCode() {
-        int hash = 1;
-        hash = hash * 31 + name.hashCode();
-        return hash;
+        return new HashCodeBuilder(17, 37)
+                .append(name)
+                .toHashCode();
     }
 
     @Override public int describeContents() {

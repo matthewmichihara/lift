@@ -2,10 +2,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="120dp"
+              android:layout_width="match_parent"
               android:layout_margin="@dimen/btn_exercise_list_padding"
-              android:background="@drawable/btn_grey_normal"
-              android:layout_height="120dp"
+              android:background="@drawable/btn_grey"
+              android:layout_height="match_parent"
               android:gravity="center">
 
     <TextView

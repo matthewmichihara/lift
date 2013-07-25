@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,24 +31,22 @@ import butterknife.InjectView;
 import butterknife.Views;
 import timber.log.Timber;
 
-/**
- * Created by mmichihara on 6/19/13.
- */
 public class ExerciseSessionFragment extends Fragment {
     public static final String ARG_EXERCISE = "exercise";
+    public static final String ARG_EXERCISE_SESSION = "exercise_session";
 
     private Exercise exercise;
+    private ExerciseSession exerciseSession;
 
     @Inject Bus bus;
     @Inject Timber timber;
     @Inject ExerciseSessionStore exerciseSessionStore;
 
     @InjectView(R.id.new_set_list) LinearLayout newSetList;
-    @InjectView(R.id.new_set) Button newSet;
-    @InjectView(R.id.complete_session) Button completeSession;
+    @InjectView(R.id.new_set) View newSet;
+    @InjectView(R.id.complete_session) View completeSession;
     @InjectView(R.id.new_notes) EditText newNotes;
     @InjectView(R.id.last_set_list) LinearLayout lastSetList;
-    @InjectView(R.id.last_notes) TextView lastNotes;
     @InjectView(R.id.more_sessions) TextView moreSessions;
 
     @Override public void onAttach(Activity activity) {
@@ -62,11 +59,29 @@ public class ExerciseSessionFragment extends Fragment {
         Views.inject(this, view);
 
         exercise = getArguments().getParcelable(ARG_EXERCISE);
+        exerciseSession = getArguments().getParcelable(ARG_EXERCISE_SESSION);
         if (exercise == null) throw new RuntimeException();
 
-        // Add the initial row.
-        View exerciseSetRow = inflater.inflate(R.layout.new_set_item, container, false);
-        newSetList.addView(exerciseSetRow);
+        if (exerciseSession == null) {
+            // Add the initial row.
+            View exerciseSetRow = inflater.inflate(R.layout.new_set_item, container, false);
+            newSetList.addView(exerciseSetRow);
+        } else {
+            List<ExerciseSet> sets = exerciseSession.getExerciseSets();
+            for (ExerciseSet set : sets) {
+                View exerciseSetRow = inflater.inflate(R.layout.new_set_item, container, false);
+
+                EditText weightEditText = (EditText) exerciseSetRow.findViewById(R.id.weight);
+                EditText repsEditText = (EditText) exerciseSetRow.findViewById(R.id.reps);
+
+                weightEditText.setText(String.valueOf(set.getWeight()));
+                repsEditText.setText(String.valueOf(set.getNumReps()));
+
+                newSetList.addView(exerciseSetRow);
+            }
+
+            newNotes.setText(exerciseSession.getNotes());
+        }
 
         newSet.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
@@ -122,8 +137,11 @@ public class ExerciseSessionFragment extends Fragment {
         // Populate last set from DAO.
         if (exercise == null) throw new RuntimeException();
         List<ExerciseSession> sessions = exerciseSessionStore.get(exercise);
-        if (!sessions.isEmpty()) {
-            ExerciseSession lastSession = sessions.get(0);
+
+        int currentSessionIndex = sessions.indexOf(exerciseSession);
+        timber.d("Current session index is " + currentSessionIndex);
+        if (currentSessionIndex != -1 && currentSessionIndex != sessions.size()-1) {
+            ExerciseSession lastSession = sessions.get(currentSessionIndex + 1);
             List<ExerciseSet> sets = lastSession.getExerciseSets();
             for (ExerciseSet set : sets) {
                 View setRow = inflater.inflate(R.layout.last_set_item, container, false);
@@ -142,11 +160,7 @@ public class ExerciseSessionFragment extends Fragment {
                     lastSetList.addView(divider);
                 }
             }
-
-            String notes = lastSession.getNotes();
-            lastNotes.setText(notes);
         }
-
         return view;
     }
 
