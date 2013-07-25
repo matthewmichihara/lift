@@ -69,7 +69,7 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
         }
 
         return convertView;
-    }
+    };
 
     static class ViewHolder {
         @InjectView(R.id.name) TextView name;

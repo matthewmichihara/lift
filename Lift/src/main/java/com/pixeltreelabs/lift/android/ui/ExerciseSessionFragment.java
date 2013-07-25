@@ -138,10 +138,20 @@ public class ExerciseSessionFragment extends Fragment {
         if (exercise == null) throw new RuntimeException();
         List<ExerciseSession> sessions = exerciseSessionStore.get(exercise);
 
-        int currentSessionIndex = sessions.indexOf(exerciseSession);
-        timber.d("Current session index is " + currentSessionIndex);
-        if (currentSessionIndex != -1 && currentSessionIndex != sessions.size()-1) {
-            ExerciseSession lastSession = sessions.get(currentSessionIndex + 1);
+        int lastSessionIndex = -1;
+        if (exerciseSession == null) {
+            if (!sessions.isEmpty()) {
+                lastSessionIndex = 0;
+            }
+        } else {
+            int currentSessionIndex = sessions.indexOf(exerciseSession);
+            if (currentSessionIndex != -1 && currentSessionIndex != sessions.size() - 1) {
+                lastSessionIndex = currentSessionIndex + 1;
+            }
+        }
+
+        if (lastSessionIndex != -1) {
+            ExerciseSession lastSession = sessions.get(lastSessionIndex);
             List<ExerciseSet> sets = lastSession.getExerciseSets();
             for (ExerciseSet set : sets) {
                 View setRow = inflater.inflate(R.layout.last_set_item, container, false);
