@@ -3,9 +3,15 @@ package com.pixeltreelabs.lift.android.ui;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
@@ -21,7 +27,9 @@ import com.pixeltreelabs.lift.android.model.ExerciseStore;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -49,7 +57,7 @@ public class ExerciseListFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_exercise_list, container, false);
         Views.inject(this, v);
 
-        List<Exercise> exercises = exerciseStore.all();
+        final List<Exercise> exercises = exerciseStore.all();
         exercises.add(DUMMY_BUTTON_EXERCISE);
         exerciseListAdapter = new ExerciseListAdapter(getActivity(), exercises, exerciseSessionStore);
         exerciseGrid.setAdapter(exerciseListAdapter);
@@ -63,6 +71,59 @@ public class ExerciseListFragment extends Fragment {
                 }
 
                 bus.post(new ExerciseSelectedEvent(exercise));
+            }
+        });
+
+        exerciseGrid.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
+        exerciseGrid.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+            @Override public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+            }
+
+            @Override public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                // Inflate a menu resource providing context menu items
+                MenuInflater inflater = mode.getMenuInflater();
+                inflater.inflate(R.menu.context_menu, menu);
+                mode.setTitle(R.string.delete_selected_exercises);
+                return true;
+            }
+
+            @Override public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.delete:
+                        // Are you serious?
+                        Set<Exercise> exercisesToRemove = new HashSet<Exercise>();
+
+                        SparseBooleanArray checked = exerciseGrid.getCheckedItemPositions();
+                        for (int i = 0; i < checked.size(); i++) {
+                            if (checked.valueAt(i)) {
+                                Exercise exercise = exerciseListAdapter.getItem(checked.keyAt(i));
+                                if (exercise != DUMMY_BUTTON_EXERCISE) {
+                                    exercisesToRemove.add(exerciseListAdapter.getItem(checked.keyAt(i)));
+                                }
+                            }
+                        }
+
+                        exercises.removeAll(exercisesToRemove);
+                        for (Exercise exercise : exercisesToRemove) {
+                            exerciseStore.remove(exercise);
+                        }
+
+                        exerciseListAdapter.notifyDataSetChanged();
+
+                        mode.finish(); // Action picked, so close the CAB
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+
+            @Override public void onDestroyActionMode(ActionMode mode) {
+
             }
         });
 

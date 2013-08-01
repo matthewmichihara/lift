@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_margin="@dimen/btn_exercise_list_padding"
-              android:background="@drawable/btn_red"
+              android:background="@drawable/red_selector"
               android:layout_height="match_parent"
               android:gravity="center">
 

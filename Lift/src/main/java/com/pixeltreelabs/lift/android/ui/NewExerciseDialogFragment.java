@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -40,6 +41,7 @@ public class NewExerciseDialogFragment extends DialogFragment {
         Views.inject(this, v);
 
         getDialog().setTitle(R.string.exercise_name);
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {

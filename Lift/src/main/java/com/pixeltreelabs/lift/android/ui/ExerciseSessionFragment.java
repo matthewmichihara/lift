@@ -89,6 +89,11 @@ public class ExerciseSessionFragment extends Fragment {
             @Override public void onClick(View v) {
                 View exerciseSetRow = inflater.inflate(R.layout.new_set_item, container, false);
                 newSetList.addView(exerciseSetRow);
+
+                // Focus cursor.
+                EditText weightEditText = (EditText) exerciseSetRow.findViewById(R.id.weight);
+                weightEditText.requestFocus();
+
             }
         });
 

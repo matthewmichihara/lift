@@ -45,4 +45,12 @@ public class ExerciseStore {
         String exercisesString = gson.toJson(exercises);
         sharedPreferences.edit().putString(KEY_EXERCISES, exercisesString).apply();
     }
+
+    public void remove(Exercise exercise) {
+        List<Exercise> exercises = all();
+        exercises.remove(exercise);
+
+        String exercisesString = gson.toJson(exercises);
+        sharedPreferences.edit().putString(KEY_EXERCISES, exercisesString).apply();
+    }
 }
