@@ -13,6 +13,7 @@ import com.pixeltreelabs.lift.android.model.ExerciseSession;
 import com.pixeltreelabs.lift.android.model.ExerciseSessionStore;
 import com.pixeltreelabs.lift.android.model.ExerciseSet;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.InjectView;
@@ -64,7 +65,7 @@ public class ExerciseListAdapter extends ArrayAdapter<Exercise> {
                 }
             }
 
-            holder.weight.setText(getContext().getString(R.string.x_pounds, highestWeight));
+            holder.weight.setText(getContext().getString(R.string.x_pounds, NumberFormat.getIntegerInstance().format(highestWeight)));
             holder.reps.setText(getContext().getString(R.string.x_reps, associatedReps));
         } else {
             holder.weight.setText("-");

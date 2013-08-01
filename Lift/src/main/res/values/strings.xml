@@ -12,7 +12,7 @@
     <string name="enter_exercise_name">Enter exercise name</string>
     <string name="save">Save</string>
     <string name="exercise_name">New Exercise</string>
-    <string name="x_pounds">%1$dlbs</string>
+    <string name="x_pounds">%1$slbs</string>
     <string name="x_reps">%1$d REPS</string>
     <string name="reps">Reps:</string>
     <string name="weight_x">Weight: %1$dlbs</string>
@@ -20,5 +20,6 @@
     <string name="x_history">%1$s History</string>
     <string name="new_exercise">NEW EXERCISE</string>
     <string name="date_weight">&lt;b>%1$s&lt;/b> - %2$dlbs</string>
+    <string name="youve_lifted">YOU\'VE LIFTED</string>
 
 </resources>

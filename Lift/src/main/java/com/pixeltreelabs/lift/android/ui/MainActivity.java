@@ -3,6 +3,7 @@ package com.pixeltreelabs.lift.android.ui;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -17,12 +18,13 @@ import com.pixeltreelabs.lift.android.model.Exercise;
 import com.pixeltreelabs.lift.android.model.ExerciseSession;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+import com.squareup.seismic.ShakeDetector;
 
 import javax.inject.Inject;
 
 import timber.log.Timber;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements ShakeDetector.Listener {
     @Inject Bus bus;
     @Inject Timber timber;
 
@@ -30,6 +32,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((LiftApplication) getApplication()).inject(this);
+
+        // Shake detection
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        ShakeDetector sd = new ShakeDetector(this);
+        sd.start(sensorManager);
 
         ExerciseListFragment exerciseListFragment = new ExerciseListFragment();
         getFragmentManager().beginTransaction().add(R.id.fragment_container, exerciseListFragment).commit();
@@ -53,6 +60,21 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override public void hearShake() {
+        // Remove any currently showing lift stats dialogs.
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("lift_stats_dialog");
+        if (prev != null) {
+            transaction.remove(prev);
+        }
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+        // Create and show the new dialog.
+        LiftStatsDialogFragment liftStatsDialogFragment = new LiftStatsDialogFragment();
+        liftStatsDialogFragment.show(getFragmentManager(), "lift_stats_dialog");
     }
 
     @Subscribe public void onExerciseSelected(ExerciseSelectedEvent event) {
@@ -105,6 +127,7 @@ public class MainActivity extends Activity {
             transaction.remove(prev);
         }
         transaction.addToBackStack(null);
+        transaction.commit();
 
         // Create and show the new dialog.
         NewExerciseDialogFragment newExerciseDialogFragment = new NewExerciseDialogFragment();
