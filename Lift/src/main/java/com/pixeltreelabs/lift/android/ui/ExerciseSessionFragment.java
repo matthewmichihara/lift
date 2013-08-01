@@ -175,8 +175,7 @@ public class ExerciseSessionFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onStart() {
+    @Override public void onStart() {
         super.onStart();
         bus.register(this);
 
@@ -185,8 +184,7 @@ public class ExerciseSessionFragment extends Fragment {
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    public void onStop() {
+    @Override public void onStop() {
         super.onStop();
         bus.unregister(this);
     }
