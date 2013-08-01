@@ -14,6 +14,8 @@ import com.pixeltreelabs.lift.android.ui.MainActivity;
 import com.pixeltreelabs.lift.android.ui.NewExerciseDialogFragment;
 import com.squareup.otto.Bus;
 
+import java.util.Random;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -55,5 +57,9 @@ public class LiftModule {
 
     @Provides @Singleton Timber provideTimber() {
         return BuildConfig.DEBUG ? Timber.DEBUG : Timber.PROD;
+    }
+
+    @Provides @Singleton Random provideRandom() {
+        return new Random();
     }
 }

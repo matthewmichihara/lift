@@ -18,9 +18,11 @@ import com.pixeltreelabs.lift.android.model.ExerciseSessionStore;
 import com.pixeltreelabs.lift.android.model.ExerciseSet;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 
@@ -30,10 +32,13 @@ import timber.log.Timber;
 
 public class LiftStatsDialogFragment extends DialogFragment {
     @InjectView(R.id.total_weight) TextView totalWeightTextView;
+    @InjectView(R.id.over_days) TextView overDaysTextView;
     @InjectView(R.id.random_text) TextView randomTextView;
 
     @Inject ExerciseSessionStore exerciseSessionStore;
-    @Inject Timber timber;
+    @Inject Random random;
+
+    private static final int[] BRO_QUOTES = new int[]{R.string.bro_do_u_even_lift, R.string.cool_story_bro, R.string.u_mad_bro, R.string.time_to_get_wheysted};
 
     @Override public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -47,30 +52,57 @@ public class LiftStatsDialogFragment extends DialogFragment {
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        int totalWeight = getTotalWeightOverPastWeek();
-        totalWeightTextView.setText(getString(R.string.x_pounds, NumberFormat.getIntegerInstance().format(totalWeight)));
-        randomTextView.setText("Bro do u even lift?");
+        TotalWeightResult result = getTotalWeightOverAllTime();
+        totalWeightTextView.setText(getString(R.string.x_pounds, NumberFormat.getIntegerInstance().format(result.getTotalWeight())));
+        overDaysTextView.setText(getString(R.string.over_x_days, NumberFormat.getIntegerInstance().format(result.getDaysAgo())));
+
+        int i = random.nextInt(BRO_QUOTES.length);
+        randomTextView.setText(BRO_QUOTES[i]);
 
         return v;
     }
 
-    private int getTotalWeightOverPastWeek() {
-        DateTime weekAgoDateTime = new DateTime().minusWeeks(1);
-
+    private TotalWeightResult getTotalWeightOverAllTime() {
         List<ExerciseSession> sessions = exerciseSessionStore.all();
 
-        int totalWeight = 0;
+        double totalWeight = 0;
+        DateTime oldestDateTime = null;
+
         for (ExerciseSession session : sessions) {
-            DateTime sessionDateTime = new DateTime(session.getDate());
-            timber.d("About to check %s", session);
-            if (sessionDateTime.isAfter(weekAgoDateTime)) {
-                timber.d("Session date is after week ago");
-                for (ExerciseSet set : session.getExerciseSets()) {
-                    totalWeight += set.getWeight() * set.getNumReps();
-                }
+            DateTime sessionTime = new DateTime(session.getDate());
+            if (oldestDateTime == null || sessionTime.isBefore(oldestDateTime)) {
+                oldestDateTime = sessionTime;
+            }
+
+            for (ExerciseSet set : session.getExerciseSets()) {
+                totalWeight += set.getWeight() * set.getNumReps();
             }
         }
 
-        return totalWeight;
+        int daysAgo = 0;
+        if (oldestDateTime != null) {
+            DateTime today = new DateTime();
+            daysAgo = Days.daysBetween(oldestDateTime, today).getDays();
+        }
+
+        return new TotalWeightResult(daysAgo, totalWeight);
+    }
+
+    static class TotalWeightResult {
+        private final int daysAgo;
+        private final double totalWeight;
+
+        public TotalWeightResult(int daysAgo, double totalWeight) {
+            this.daysAgo = daysAgo;
+            this.totalWeight = totalWeight;
+        }
+
+        public int getDaysAgo() {
+            return daysAgo;
+        }
+
+        public double getTotalWeight() {
+            return totalWeight;
+        }
     }
 }

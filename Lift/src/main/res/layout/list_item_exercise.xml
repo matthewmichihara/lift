@@ -11,7 +11,7 @@
     <TextView
             android:id="@+id/name"
             android:textColor="@color/text"
-            android:textSize="16dp"
+            android:textSize="28dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -19,7 +19,9 @@
     <TextView
             android:id="@+id/weight"
             android:textColor="@color/text"
-            android:textSize="32dp"
+            android:textSize="42dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_marginTop="-10dp"
             android:fontFamily="sans-serif-thin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -28,7 +30,7 @@
             android:id="@+id/reps"
             android:textColor="@color/text"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textSize="28dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

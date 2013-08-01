@@ -13,7 +13,6 @@
             android:textColor="@android:color/white"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-
             android:gravity="center"
             android:text="@string/weight"/>
 
@@ -25,6 +24,7 @@
             android:layout_marginRight="16dp"
             android:gravity="center"
             android:inputType="number"
+            android:nextFocusDown="@+id/reps"
             android:background="@android:color/white"/>
 
     <TextView
