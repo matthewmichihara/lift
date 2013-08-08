@@ -23,10 +23,12 @@
     <string name="youve_lifted">YOU\'VE LIFTED</string>
     <string name="over_x_days">in %1$s days</string>
     <string name="delete_selected_exercises">Delete Selected Exercises</string>
+    <string name="exercise_date">%1$s - %2$s</string>
 
     <string name="bro_do_u_even_lift">BRO, DO U EVEN LIFT?</string>
     <string name="cool_story_bro">COOL STORY BRO</string>
     <string name="u_mad_bro">U MAD BRO?</string>
     <string name="time_to_get_wheysted">TIME TO GET WHEYSTED!</string>
+    <string name="na">N/A</string>
 
 </resources>

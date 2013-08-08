@@ -148,11 +148,12 @@ public class MainActivity extends Activity implements ShakeDetector.Listener {
         args.putParcelable(ExerciseSessionFragment.ARG_EXERCISE, exercise);
         args.putParcelable(ExerciseSessionFragment.ARG_EXERCISE_SESSION, session);
 
-        ExerciseSessionFragment sessionFragment = new ExerciseSessionFragment();
-        sessionFragment.setArguments(args);
+        ExerciseSessionHistoryFragment historyFragment = new ExerciseSessionHistoryFragment();
+        historyFragment.setArguments(args);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, sessionFragment);
+        transaction.replace(R.id.fragment_container, historyFragment);
+
         transaction.addToBackStack(null);
         transaction.commit();
     }

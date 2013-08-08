@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_marginLeft="@dimen/activity_horizontal_margin"
+              android:layout_marginRight="@dimen/activity_horizontal_margin"
+              android:layout_marginTop="@dimen/activity_vertical_margin"
+              android:layout_marginBottom="@dimen/activity_vertical_margin"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.fourpool.autoresizinglistview.AutoResizingListView
+            android:id="@+id/sets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"/>
+
+    <TextView
+            android:id="@+id/comment"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:color/white"
+            android:padding="14dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:drawableLeft="@drawable/ic_notes"
+            android:drawablePadding="@dimen/btn_drawable_padding"/>
+
+    <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
+
+        <!--<ImageButton-->
+                <!--android:id="@+id/previous_set"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:src="@drawable/ic_previous_arrow"-->
+                <!--android:background="@drawable/red_selector"/>-->
+
+        <!--<ImageButton-->
+                <!--android:id="@+id/next_set"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:src="@drawable/ic_next_arrow"-->
+                <!--android:background="@drawable/red_selector"/>-->
+    <!--</LinearLayout>-->
+
+</LinearLayout>

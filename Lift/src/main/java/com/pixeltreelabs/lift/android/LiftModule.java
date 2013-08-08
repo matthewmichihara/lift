@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.pixeltreelabs.lift.android.ui.ExerciseListFragment;
 import com.pixeltreelabs.lift.android.ui.ExerciseSessionFragment;
+import com.pixeltreelabs.lift.android.ui.ExerciseSessionHistoryFragment;
 import com.pixeltreelabs.lift.android.ui.ExerciseSessionListFragment;
 import com.pixeltreelabs.lift.android.ui.LiftStatsDialogFragment;
 import com.pixeltreelabs.lift.android.ui.MainActivity;
@@ -29,7 +30,8 @@ import timber.log.Timber;
                 ExerciseSessionFragment.class,
                 ExerciseSessionListFragment.class,
                 NewExerciseDialogFragment.class,
-                LiftStatsDialogFragment.class
+                LiftStatsDialogFragment.class,
+                ExerciseSessionHistoryFragment.class
         }
 )
 public class LiftModule {
