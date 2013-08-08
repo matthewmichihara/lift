@@ -136,8 +136,12 @@ public class ExerciseSessionFragment extends Fragment {
                 // hide keyboard
                 InputMethodManager inputManager = (InputMethodManager)
                         getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+
+                View currentFocus = getActivity().getCurrentFocus();
+                if (currentFocus != null) {
+                inputManager.hideSoftInputFromWindow(currentFocus.getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
+                }
             }
         });
 
