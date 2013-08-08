@@ -28,15 +28,12 @@ public class MainActivity extends Activity implements ShakeDetector.Listener {
     @Inject Bus bus;
     @Inject Timber timber;
 
+    private ShakeDetector shakeDetector;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((LiftApplication) getApplication()).inject(this);
-
-        // Shake detection
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        ShakeDetector sd = new ShakeDetector(this);
-        sd.start(sensorManager);
 
         ExerciseListFragment exerciseListFragment = new ExerciseListFragment();
         getFragmentManager().beginTransaction().add(R.id.fragment_container, exerciseListFragment).commit();
@@ -45,11 +42,18 @@ public class MainActivity extends Activity implements ShakeDetector.Listener {
     @Override protected void onStart() {
         super.onStart();
         bus.register(this);
+
+        // Shake detection
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        shakeDetector = new ShakeDetector(this);
+        shakeDetector.start(sensorManager);
     }
 
     @Override protected void onStop() {
         super.onStop();
         bus.unregister(this);
+
+        shakeDetector.stop();
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -69,7 +73,6 @@ public class MainActivity extends Activity implements ShakeDetector.Listener {
         if (prev != null) {
             transaction.remove(prev);
         }
-        transaction.addToBackStack(null);
         transaction.commit();
 
         // Create and show the new dialog.
