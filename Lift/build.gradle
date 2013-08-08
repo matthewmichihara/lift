@@ -22,7 +22,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'commons-lang:commons-lang:2.2'
     compile 'joda-time:joda-time:2.2'
-
+    compile files('libs/GoogleAdMobAdsSdk-6.4.1.jar')
 }
 
 android {

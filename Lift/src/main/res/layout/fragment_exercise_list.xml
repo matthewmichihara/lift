@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
     <GridView android:id="@+id/exercise_grid"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
               android:numColumns="2"
               android:gravity="center"
               android:padding="@dimen/btn_exercise_list_padding"
               android:horizontalSpacing="@dimen/btn_exercise_list_padding"
               android:verticalSpacing="@dimen/btn_exercise_list_padding"
               android:stretchMode="columnWidth"/>
+
+    <com.google.ads.AdView android:id="@+id/adView"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginBottom="@dimen/btn_exercise_list_padding"
+                           ads:adUnitId="ca-app-pub-6145597435744548/6068396915"
+                           ads:adSize="BANNER"
+                           ads:testDevices="TEST_EMULATOR, TEST_DEVICE"
+                           ads:loadAdOnCreate="true"/>
 
 </LinearLayout>
