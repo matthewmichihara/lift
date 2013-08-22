@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-public class Exercise implements Parcelable {
+public class Exercise implements Parcelable, Comparable<Exercise> {
     private final String name;
 
     public Exercise(String name) {
@@ -37,6 +37,10 @@ public class Exercise implements Parcelable {
                 .isEquals();
     }
 
+    @Override public int compareTo(Exercise another) {
+        return getName().compareTo(another.getName());
+    }
+
     @Override public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(name)
@@ -61,5 +65,4 @@ public class Exercise implements Parcelable {
             return new Exercise[size];
         }
     };
-
 }

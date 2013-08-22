@@ -27,6 +27,7 @@ import com.pixeltreelabs.lift.android.model.ExerciseStore;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -58,6 +59,7 @@ public class ExerciseListFragment extends Fragment {
         Views.inject(this, v);
 
         final List<Exercise> exercises = exerciseStore.all();
+        Collections.sort(exercises);
         exercises.add(DUMMY_BUTTON_EXERCISE);
         exerciseListAdapter = new ExerciseListAdapter(getActivity(), exercises, exerciseSessionStore);
         exerciseGrid.setAdapter(exerciseListAdapter);
@@ -145,6 +147,7 @@ public class ExerciseListFragment extends Fragment {
 
     @Subscribe public void onNewExerciseSaved(NewExerciseSavedEvent e) {
         List<Exercise> exercises = exerciseStore.all();
+        Collections.sort(exercises);
         timber.d("Exercises --");
         for (Exercise exercise : exercises) {
             timber.d("Exercise: %s", exercise);
