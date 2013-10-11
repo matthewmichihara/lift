@@ -9,8 +9,8 @@ buildscript {
 apply plugin: 'android'
 
 repositories {
-    mavenCentral();
-    mavenLocal()
+    mavenCentral()
+    mavenRepo url: 'https://oss.sonatype.org/content/groups/staging'
 }
 
 dependencies {
@@ -23,7 +23,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'commons-lang:commons-lang:2.2'
     compile 'joda-time:joda-time:2.2'
-    compile 'com.fourpool:autoresizing-listview:0.1'
+    compile 'com.fourpool.autoresizinglistview:autoresizinglistview:0.0.3@aar'
     compile files('libs/GoogleAdMobAdsSdk-6.4.1.jar')
 }
 
